@@ -2,6 +2,7 @@
 
 namespace Journey\Providers;
 
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'Journey\Model' => 'Journey\Policies\ModelPolicy',
+        'Journey\Model' => 'Journey\Policies\ModelPolicy',
     ];
 
     /**
@@ -25,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Register necessary routes to issue and revoke access tokens
+        Passport::routes(function ($router) {
+            $router->forAccessTokens();
+        });
     }
 }
