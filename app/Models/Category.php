@@ -14,8 +14,16 @@ class Category extends Model
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+    /**
+     * Attach a hasMany relationship to Category and Post
+     * 
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
+
+    public static $validationRules = [
+        'name' => 'required|unique:categories|min:3|max:191'
+    ];
 }
