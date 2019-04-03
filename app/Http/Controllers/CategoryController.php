@@ -28,18 +28,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->validate(Category::$validationRules));
+
+        if (!$category) {
+            return response()->json("Failed to create a new category, please try again.", 500);
+        }
+
+        return response()->json($category, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return response()->json($category);
     }
 
     /**
