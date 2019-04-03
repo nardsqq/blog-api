@@ -45,6 +45,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        if (!$category) {
+            return response()->json("Categoy does not exist.", 404);
+        }
+        
         return response()->json($category);
     }
 
@@ -69,11 +73,15 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if (!$category->delete()) {
+            return response()->json("Failed to delete specified category. Please try again.", 500);
+        }
+
+        return response()->json([], 204);
     }
 }
