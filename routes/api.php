@@ -22,4 +22,6 @@ Route::post('/login', 'AuthController@login');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/logout', 'AuthController@logout');
+
+    Route::apiResource('/categories', 'CategoryController');
 });
