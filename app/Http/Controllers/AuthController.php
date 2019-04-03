@@ -29,7 +29,7 @@ class AuthController extends Controller
         
         $user = User::create($request->toArray());
 
-        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+        $token = $user->createToken('Journey Password Grant Client')->accessToken;
 
         $response = ['token' => $token];
 
@@ -48,7 +48,7 @@ class AuthController extends Controller
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+                $token = $user->createToken('Journey Password Grant Client')->accessToken;
 
                 $response = ['token' => $token];
 
