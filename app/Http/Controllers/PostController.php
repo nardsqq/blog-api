@@ -18,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('created_at', 'DESC')->with('category')->get();
+
+        return response()->json($posts);
     }
 
     /**
@@ -29,7 +31,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create($request->all());
+
+        return response()->json($post, 201);
     }
 
     /**
