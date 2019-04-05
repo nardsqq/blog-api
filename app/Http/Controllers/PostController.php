@@ -4,10 +4,7 @@ namespace Journey\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Journey\Models\{
-    Post,
-    Category
-};
+use Journey\Models\Post;
 
 class PostController extends Controller
 {
@@ -43,12 +40,16 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        if (!$post) {
+            return response()->json("Post does not exist.", 404);
+        }
+
+        return response()->json($post->load('category'));
     }
 
     /**
