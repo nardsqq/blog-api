@@ -33,6 +33,10 @@ class PostController extends Controller
     {
         $post = Post::create($request->all());
 
+        if (!$post) {
+            return response()->json("Failed to add a new post, please try again.", 500);
+        }
+
         return response()->json($post, 201);
     }
 
