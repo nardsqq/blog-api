@@ -45,10 +45,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if (!$post) {
-            return response()->json("Post does not exist.", 404);
-        }
-
         return response()->json($post->load('category'));
     }
 
