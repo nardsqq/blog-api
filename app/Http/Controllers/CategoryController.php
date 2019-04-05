@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         if (!$category) {
-            return response()->json("Categoy does not exist.", 404);
+            return response()->json("Category does not exist.", 404);
         }
         
         return response()->json($category);
