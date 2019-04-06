@@ -5,8 +5,8 @@ namespace Journey\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Journey\User;
 use Journey\Models\Category;
-use Journey\Models\Tag;
 
 class Post extends Model
 {
@@ -20,8 +20,8 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function tags()
+    public function user()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsTo(User::class);
     }
 }
