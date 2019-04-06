@@ -12,7 +12,7 @@ class Post extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
+    protected $guarded = ['user_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function category()
