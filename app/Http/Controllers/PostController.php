@@ -80,6 +80,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->user_id != Auth::id()) {
+            return response()->json("You are not allowed to delete this post.", 401);
+        }
+        
         if (!$post->delete()) {
             return response()->json("Failed to delete specified post.");
         }
