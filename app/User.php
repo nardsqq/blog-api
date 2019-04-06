@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Journey\Models\Post;
+
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
@@ -43,4 +45,9 @@ class User extends Authenticatable
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6|confirmed'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
