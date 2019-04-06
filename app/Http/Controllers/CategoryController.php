@@ -31,7 +31,7 @@ class CategoryController extends Controller
         $category = Category::create($request->validate(Category::$validationRules));
 
         if (!$category) {
-            return response()->json("Failed to create a new category, please try again.", 500);
+            return response()->json("Failed to create a new category.", 500);
         }
 
         return response()->json($category, 201);
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $categoryUpdated = $category->update($request->validate(Category::$validationRules));
     
         if (!$categoryUpdated) {
-            return response()->json("Failed to update specified category. Please try again.", 500);
+            return response()->json("Failed to update specified category.", 500);
         }
 
         return response()->json($category);
@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if (!$category->delete()) {
-            return response()->json("Failed to delete specified category. Please try again.", 500);
+            return response()->json("Failed to delete specified category.", 500);
         }
 
         return response()->json([], 204);
