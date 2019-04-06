@@ -19,11 +19,13 @@ class CreatePostsTable extends Migration
             $table->text('body');
 
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -35,7 +37,7 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
+            $table->dropForeign(['category_id', 'user_id']);
         });
 
         Schema::dropIfExists('posts');
