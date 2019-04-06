@@ -47,11 +47,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->user_id == Auth::id()) {
-            return response()->json($post->load('category', 'user'));
+        if ($post->user_id != Auth::id()) {
+            return response()->json("Specified post not found.", 404);
         }
 
-        return response()->json("Specified post not found.", 404);
+        return response()->json($post->load('category', 'user'));
     }
 
     /**
@@ -63,13 +63,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        if ($post->user_id == Auth::id()) {
-            $post->update($request->all());
-
-            return response()->json($post->load('category', 'user'));
+        if ($post->user_id != Auth::id()) {
+            return response()->json("Failed to update specified post", 500);
         }
 
-        return response()->json("Failed to update specified post", 500);
+        $post->update($request->all());
+
+        return response()->json($post->load('category', 'user'));
     }
 
     /**
