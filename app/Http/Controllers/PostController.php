@@ -3,7 +3,9 @@
 namespace Journey\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+use Journey\User;
 use Journey\Models\Post;
 
 class PostController extends Controller
@@ -28,13 +30,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
+        $post = Auth::user()->posts()->create($request->all());
 
         if (!$post) {
             return response()->json("Failed to add a new post, please try again.", 500);
         }
 
-        return response()->json($post, 201);
+        return response()->json($post->load('category', 'user'), 201);
     }
 
     /**
