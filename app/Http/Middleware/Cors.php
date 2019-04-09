@@ -17,6 +17,6 @@ class Cors
     {
         return $next($request)
             ->header('Access-Control-Allow-Origin', 'http://localhost:3000')
-            ->header('Access-Control-Allow-Headers', 'http://localhost:3000');
+            ->header('Access-Control-Allow-Headers', 'X-REQUESTED-WITH');
     }
 }
