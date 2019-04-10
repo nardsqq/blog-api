@@ -27,7 +27,7 @@
 2. Create a new database with `phpMyAdmin`. I suggest that you use `db_journey` for your database name.
 3. Open the command shell
 4. Run `php artisan passport:install` to install and setup the API auth related tables.
-4. Next, type `php artisan migrate` and hit enter to activate the artisan command.
+4. Next, type `php artisan migrate` and hit enter to activate the artisan command (Use `php artisan migrate --force` if the Laravel Passport install cause issues).
 5. This will migrate the database tables and it will make the database accessible through `localhost/phpMyAdmin`.
 
 ### Usage
