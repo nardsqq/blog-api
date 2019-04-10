@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'DESC')->with('category')->get();
+        $posts = Post::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->with('category')->get();
 
         return response()->json($posts);
     }
